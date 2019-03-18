@@ -5,7 +5,7 @@ public class Tarea {
 	    try {
 		cantidad = Integer.parseInt(args[0]);
 			for (int i=0; i<=cantidad; i++) {
-		    	System.out.println(cantidad);
+		    	System.out.println(i);
 			}
 	    } catch (NumberFormatException e) {
 		System.err.println("Argument" + args[0] + " must be an integer.");

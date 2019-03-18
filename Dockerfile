@@ -13,8 +13,10 @@ RUN apt-get update && \
     mkdir /appjava
 
 WORKDIR /appjava
-COPY main.java /appjava
-RUN javac main.java
+COPY /java /appjava
+RUN javac Tarea.java && \
+    jar ccmf Tarea.mf tarea.jar Tarea.class Tarea.java
+
 
 #-------------------------------------------------
 # Stage 2 - Ejecuto el binario
@@ -30,3 +32,4 @@ RUN apk update && \
 
 COPY --from=builder /appjava/main /bin/main
 WORKDIR /bin/main
+CMD ["java -jar tarea.jar"]
