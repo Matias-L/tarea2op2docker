@@ -30,6 +30,6 @@ LABEL maintainer="Matias Lionel Ceballos" \
 RUN apk update && \
     apk add openjdk8-jre
 
-COPY --from=builder /appjava/main /bin/main
+COPY --from=builder /appjava/*.* /bin/main
 WORKDIR /bin/main
 CMD ["java -jar tarea.jar"]
