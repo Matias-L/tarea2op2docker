@@ -2,6 +2,13 @@
 Tarea dada la semana 2 en el workshop docker
 
 
+Enlace al docker hub:
+https://hub.docker.com/r/matiaslionel/tarea2op2docker
+
+
+
+
+
 
 
 
