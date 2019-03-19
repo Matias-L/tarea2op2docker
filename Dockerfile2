@@ -1,15 +1,19 @@
 #-------------------------------------------------
 # Stage 1 - Construyo el binario
 #-------------------------------------------------
-FROM openjdk:7 as builder
+FROM ubuntu:16.04 as builder
 LABEL maintainer="Matias Lionel Ceballos" \
       version="0.1" \
       lenguaje="java" \
       stage="build" \
       description="Tarea dada la segunda clase del workshop docker, opcion 2."
 
-COPY /java /usr/src/appjava
+RUN apt-get update && \
+    apt-get install -y default-jdk && \
+    mkdir /appjava
+
 WORKDIR /appjava
+COPY /java /appjava
 RUN javac Tarea.java && \
     jar ccmf Tarea.mf tarea.jar Tarea.class Tarea.java
 
@@ -17,12 +21,15 @@ RUN javac Tarea.java && \
 #-------------------------------------------------
 # Stage 2 - Ejecuto el binario
 #-------------------------------------------------
-FROM openjdk:7-alpine as runtime
+FROM alpine:3.7
 LABEL maintainer="Matias Lionel Ceballos" \
       version="0.1" \
       stage="execute" \
       description="Tarea dada la segunda clase del workshop docker, opcion 2, entorno ejecucion"
 
-COPY --from=builder /usr/src/appjava /bin/main/javaapp
-WORKDIR /bin/main/javaapp
+RUN apk update && \
+    apk add openjdk8-jre
+
+COPY --from=builder /appjava/ /bin/main
+WORKDIR /bin/main
 CMD ["java -jar tarea.jar"]
