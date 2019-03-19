@@ -17,11 +17,14 @@ RUN javac Tarea.java && \
 #-------------------------------------------------
 # Stage 2 - Ejecuto el binario
 #-------------------------------------------------
-FROM openjdk:7 as runtime
+FROM oalpine:3.7 as runtime
 LABEL maintainer="Matias Lionel Ceballos" \
       version="0.1" \
       stage="execute" \
       description="Tarea dada la segunda clase del workshop docker, opcion 2, entorno ejecucion"
+
+RUN apk update && \
+    apk add openjdk8-jre
 
 COPY --from=builder /usr/src/appjava /bin/main/javaapp
 WORKDIR /bin/main/javaapp
