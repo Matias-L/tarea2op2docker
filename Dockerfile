@@ -17,7 +17,7 @@ RUN javac Tarea.java && \
 #-------------------------------------------------
 # Stage 2 - Ejecuto el binario
 #-------------------------------------------------
-FROM oalpine:3.7 as runtime
+FROM alpine:3.7 as runtime
 LABEL maintainer="Matias Lionel Ceballos" \
       version="0.1" \
       stage="execute" \
