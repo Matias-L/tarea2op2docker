@@ -25,4 +25,4 @@ LABEL maintainer="Matias Lionel Ceballos" \
 
 COPY --from=builder /usr/src/appjava /bin/main/javaapp
 WORKDIR /bin/main/javaapp
-CMD ["java -jar tarea.jar"]
+CMD ["java", "-jar","tarea.jar"]
