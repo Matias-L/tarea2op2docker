@@ -9,7 +9,7 @@ LABEL maintainer="Matias Lionel Ceballos" \
       description="Tarea dada la segunda clase del workshop docker, opcion 2."
 
 COPY /java /usr/src/appjava
-WORKDIR /appjava
+WORKDIR /usr/src/appjava
 RUN javac Tarea.java && \
     jar ccmf Tarea.mf tarea.jar Tarea.class Tarea.java
 
