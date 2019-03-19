@@ -17,7 +17,7 @@ RUN javac Tarea.java && \
 #-------------------------------------------------
 # Stage 2 - Ejecuto el binario
 #-------------------------------------------------
-FROM openjdk:7-alpine as runtime
+FROM openjdk:7 as runtime
 LABEL maintainer="Matias Lionel Ceballos" \
       version="0.1" \
       stage="execute" \
@@ -25,4 +25,4 @@ LABEL maintainer="Matias Lionel Ceballos" \
 
 COPY --from=builder /usr/src/appjava /bin/main/javaapp
 WORKDIR /bin/main/javaapp
-CMD ["java", "-jar","tarea.jar"]
+CMD ["java", "-jar tarea.jar"]
